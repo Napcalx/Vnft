@@ -8,11 +8,11 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 contract Cheytac is ERC721URIStorage, VRFConsumerBase, Ownable {
     using Strings for string;
 
-    bytes32 internal keyHash = 0x79d3d8832d904592c0bf9818b621522c988bb8b0c05cdc3b15aea1b6e8db0c15;
+    bytes32 internal keyHash;
     uint256 internal fee;
     uint256 public randomResult;
-    address public VRFCoordinator = 0x2Ca8E0C643bDe4C2E08ab1fA0da3401AdAD7734D;
-    address public LinkToken = 0x326C977E6efc84E512bB9C30f76E30c160eD06FB;
+    address public VRFCoordinator;
+    address public LinkToken;
     uint64 private constant suscriptionId = 14223;
    
     struct Equipment {

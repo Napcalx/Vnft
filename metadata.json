@@ -1,0 +1,43 @@
+const DungeonsAndDragons = artifacts.require('DungeonsAndDragonsCharacter')
+const fs = require('fs')
+
+const metadata ={
+    "name" : "Cheytac M",
+    "description" : "Sleek, Smooth and Precise. Perfect tool for its task, Inspiring",
+    "image" : "https://amethyst-watery-wildebeest-997.mypinata.cloud/ipfs/QmNSHASaf1KrvMdzQFWWbHEWom95LEQ6JYrtoZMjt7bJWu", 
+    "length": "1262x768 pixels",
+    "size": "293.3KB",
+    "CID": "QmNSHASaf1KrvMdzQFWWbHEWom95LEQ6JYrtoZMjt7bJWu",
+    "attributes" : [{
+        "trait_type": "length",
+        "value": "0"
+    },
+    {
+        "trait_type": "weight",
+        "value": "0"
+    },
+    {
+        "trait_type": "stock",
+        "value": "0"
+    }, 
+    {
+        "trait_type": "gripdegree",
+        "value": "0"
+    },
+    {
+        "trait_type": "scope",
+        "value": "0"
+        
+    },
+    {   
+        "trait_type": "range",
+        "value": "0"
+    }
+    ]
+}
+
+
+
+
+
+    

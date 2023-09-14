@@ -1,17 +1,21 @@
 import { ethers } from "hardhat";
 
 async function main () {
-  const [cheytac] = await ethers.getSigners();
-  const CT = await cheytac.deployed()
+  const [signer] = await ethers.getSigners();
 
-  const Vnft = await ethers.getContractAt("Cheytac", "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 ");
-  const signer = await ethers.provider.resolveName("cheytac")
+  console.log(signer.address);
 
-  await Vnft.requestNewEquip(signer.address);
+  const Vnft = await ethers.getContractAt("Cheytac", "0x4C37249DC076fDb2A1AD67C8823d0CE8Fdb1cfDF");
+
+  console.log('Creating requests on contract:', signer.address)
+  const deploy = await Vnft.requestNewEquip("M200 Intervention Grey");
+
+  console.log("Name of the New NFT", deploy);
+
 
 };
 
-//0x3D7a4E450B324E656E0F79fC4aFb5FEd72Bb5f68
+//0x4C37249DC076fDb2A1AD67C8823d0CE8Fdb1cfDF
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
 main()
@@ -20,3 +24,4 @@ main()
   console.error(error);
   process.exitCode = 1;
 });
+

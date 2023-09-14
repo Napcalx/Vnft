@@ -1,19 +1,21 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import "@chainlink/contracts/src/v0.8/VRFConsumerBase.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
+
 
 contract Cheytac is ERC721URIStorage, VRFConsumerBase, Ownable {
     using Strings for string;
 
     bytes32 internal keyHash;
     uint256 internal fee;
-    uint256 public randomResult;
-    address public VRFCoordinator;
+    VRFCoordinatorV2Interface COORDINATOR;
     address public LinkToken;
-    uint64 private constant suscriptionId = 14223;
+    uint64 subscriptionId;
+
    
     struct Equipment {
         uint256 size;
@@ -30,16 +32,17 @@ contract Cheytac is ERC721URIStorage, VRFConsumerBase, Ownable {
     mapping(bytes32 => address) requestToSender;
     mapping(bytes32 => uint256) requestToTokenId;
 
-
-    constructor (address _VRFCoordinator, address _LinkToken, bytes32 _keyhash) 
-        VRFConsumerBase(_VRFCoordinator, _LinkToken)
+    constructor (address _LinkToken, uint64 _subscriptionId)
+        VRFConsumerBase(0x2Ca8E0C643bDe4C2E08ab1fA0da3401AdAD7734D,  _LinkToken)
         ERC721 ("Cheytac", "CT")
     {
-        VRFCoordinator = _VRFCoordinator;
+        COORDINATOR = VRFCoordinatorV2Interface(0x2Ca8E0C643bDe4C2E08ab1fA0da3401AdAD7734D);
         LinkToken = _LinkToken; 
-        keyHash = _keyhash;
+        keyHash = 0x79d3d8832d904592c0bf9818b621522c988bb8b0c05cdc3b15aea1b6e8db0c15;
         fee = 0.1 * 10**18; // 0.1 Link;
+        subscriptionId = _subscriptionId;
     }
+
 
     function requestNewEquip(string memory name) public returns (bytes32) {
         require(LINK.balanceOf(address(this)) >= fee, "Insufficent Link");
@@ -81,7 +84,7 @@ contract Cheytac is ERC721URIStorage, VRFConsumerBase, Ownable {
         _safeMint(requestToSender[requestId], newId);
     }
 
-    function getNumberOfCharacters() public view returns (uint256) {
+    function getNumberOfEquipments() public view returns (uint256) {
         return equipment.length; 
     }
 }

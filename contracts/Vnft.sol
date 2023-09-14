@@ -1,11 +1,13 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.6.6;
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@chainlink/contracts/src/v0.6/VRFConsumerBase.sol";
+pragma solidity 0.8.19;
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@chainlink/contracts/src/v0.8/VRFConsumerBase.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract Cheytac is ERC721, VRFConsumerBase, Ownable {
+contract Cheytac is ERC721URIStorage, VRFConsumerBase, Ownable {
+    using Strings for string;
+
     bytes32 internal keyHash = "0x79d3d8832d904592c0bf9818b621522c988bb8b0c05cdc3b15aea1b6e8db0c15";
     uint256 internal fee;
     uint256 public randomResult;
@@ -34,7 +36,7 @@ contract Cheytac is ERC721, VRFConsumerBase, Ownable {
     {
         VRFCoordinator = _VRFCoordinator;
         LinkToken = _LinkToken; 
-        keyhash = _keyhash;
+        keyHash = _keyhash;
         fee = 0.1 * 10**18; // 0.1 Link;
     }
 

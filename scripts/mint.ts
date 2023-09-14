@@ -3,13 +3,13 @@ import { ethers } from "hardhat";
 async function main () {
   const [signer] = await ethers.getSigners();
 
-  const Vnft = await ethers.getContractAt("Cheytac", "0x3D7a4E450B324E656E0F79fC4aFb5FEd72Bb5f68");
+  const Vnft = await ethers.getContractAt("Cheytac", "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 ");
 
-  await Vnft.mint(signer.address, "QmUfzmkhaUKRVWWFAW4GhoJ2iP4o7pCewAJvwA4TUwUgc8");
+  await Vnft.mintNft(signer.address, "QmUfzmkhaUKRVWWFAW4GhoJ2iP4o7pCewAJvwA4TUwUgc8");
 
 };
 
-
+//0x3D7a4E450B324E656E0F79fC4aFb5FEd72Bb5f68
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
 main()

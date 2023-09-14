@@ -1,6 +1,3 @@
-const DungeonsAndDragons = artifacts.require('DungeonsAndDragonsCharacter')
-const fs = require('fs')
-
 const metadata ={
     "name" : "Cheytac M",
     "description" : "Sleek, Smooth and Precise. Perfect tool for its task, Inspiring",
